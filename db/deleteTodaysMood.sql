@@ -1,0 +1,2 @@
+DELETE FROM Moods 
+WHERE id = $1;
