@@ -5,7 +5,8 @@ const express = require('express'),
     app = express(),
     port = process.env.PORT||3001,
     massive = require('massive'),
-    {insertMood,deleteTodaysMood,getMoods} = require('./controller'),
+    {insertMood,deleteTodaysMood,getMoods,editMood} = require('./moodController'),
+    {getHabits} = require ('./habitController'),
     {json} = require('body-parser');
     
 
@@ -34,6 +35,9 @@ passport.deserializeUser((user,done)=>{
 app.post('/api/moods',insertMood)
 app.delete('/api/moods/:id',deleteTodaysMood)
 app.get('/api/moods',getMoods)
+app.put('/api/moods/:id',editMood)
+
+app.get('/api/habits',getHabits)
 
 
 

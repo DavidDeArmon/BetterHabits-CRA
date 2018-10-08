@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {getMoods} from '../ducks/reducer'
+import {getMoods} from '../ducks/moodReducer'
 import { connect } from 'react-redux';
 
 

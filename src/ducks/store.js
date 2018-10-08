@@ -1,7 +1,11 @@
-import {createStore,applyMiddleware} from 'redux';
+import {createStore,applyMiddleware,combineReducers} from 'redux';
 import promiseMiddleware from 'redux-promise-middleware'
-import reducer from'./reducer'
+import moodReducer from'./moodReducer'
+import habitReducer from './habitReducer'
 
-const store = createStore(reducer,applyMiddleware(promiseMiddleware()))
+
+let bothReducers = combineReducers({moodReducer,habitReducer})
+
+let store = createStore(bothReducers,applyMiddleware(promiseMiddleware()))
 
 export default store;
