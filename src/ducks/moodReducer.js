@@ -45,7 +45,7 @@ export default function reducer(state=initialState,action){
         case GET_MOODS+'_FULFILLED':
             return{...state,moodsArr:action.payload.data}
         case GET_MOODS+'_PENDING':
-            return{...state,moodsArr:action.payload.data}
+            return{...state}
         default:
         return state;
     }

@@ -6,24 +6,46 @@ import {habitDays,getHabits} from '../ducks/habitReducer'
 
 class Habits extends Component{
     componentDidMount(){
-        this.props.habitDays('2018-10-01','2018-10-30')
+        this.props.habitDays('2018-09-10','2018-10-10')
         this.props.getHabits()
     }
+    days(startDay,endDay,habitDays,habitID){
+        var start = new Date(startDay)
+        var end= new Date(endDay)
+        var loop = new Date(start)
+        let index = 0
+        let newArr=[]
+        let findHabitIndex = (element)=>{return element===`${loop}`}
+        //creates array of dates from habits with applicable id
+        let habitDates = habitDays.map(e=>{
+            if(e.id===habitID){
+                return `${new Date(e.date)}`
+            }else{return null}
+           })
+           //loops through provided dates and fills in data found or not found
+        while(loop<=end){
+            var newDate = loop.setDate(loop.getDate()+1)
+            loop= new Date(newDate)
+            loop.setHours(0,0,0,0)
+            let dateIndex = habitDates.findIndex(e=>findHabitIndex(e))
+            if(dateIndex===-1){
+                newArr.push(<div key = {index++}>{`NO DATA ${loop}`}</div>)
+            }else{
+                let date = new Date(habitDays[dateIndex].date)
+                newArr.push(<div key = {index++}>{` DATA FOUND ${date}`}</div>)
+            }
+        }
+        return newArr
+    }
+
     render(){
         var {habitDays,habits} = this.props.habitReducer
-        var habitDisplay=[];
-        console.log(habits)
-        console.log(habitDays)
-        //establish 30 days of divs
-         var thirtyDays = [];
-        for(let i = 0;i<31;i++){
-            thirtyDays.push(<div key={i}>{i}</div>)
-        }
-        //establish array of subscribed habits and include 30 days
+        var habitDisplay=[];    
+        //establish array of subscribed habits and include the result of days function
        habits.forEach((habit,idx)=>{
               habitDisplay.push(<div key = {idx}>
-              {habit.habit_name}
-              {thirtyDays}
+              <h2>{habit.habit_name}</h2>
+              {this.days('2018-09-10','2018-10-10',habitDays.data,habit.id)}
               </div>)
             })
            
