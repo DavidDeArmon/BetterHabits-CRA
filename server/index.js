@@ -6,7 +6,7 @@ const express = require('express'),
     port = process.env.PORT||3001,
     massive = require('massive'),
     {insertMood,deleteTodaysMood,getMoods,editMood} = require('./moodController'),
-    {getHabits} = require ('./habitController'),
+    {getHabits,recordHabit,checkHabit,getHabitDays} = require ('./habitController'),
     {json} = require('body-parser');
     
 
@@ -38,6 +38,9 @@ app.get('/api/moods',getMoods)
 app.put('/api/moods/:id',editMood)
 
 app.get('/api/habits',getHabits)
+app.post('/api/habits/days',getHabitDays)
+app.post('/api/habits',recordHabit)
+app.post('/api/habits/check',checkHabit)
 
 
 

@@ -1,28 +1,36 @@
 import React,{Component} from 'react'
-import {getHabits} from '../ducks/habitReducer'
+import {getHabits,recordHabit,checkHabit} from '../ducks/habitReducer'
 import {connect} from 'react-redux'
 
 class Habit extends Component{
-    constructor(props){
-        super(props)
-        this.state={
-            habits:[]
-        }
-    }
     componentDidMount(){
-        console.log(this.props.getHabits().then(response=>{
-            this.setState({habits:response.action.payload.data[0].habit_name})
-          return  response.action.payload.data[0].habit_name}))
-        // this.setState({habits:this.props.getHabits()})
+        this.props.getHabits()
+        this.props.checkHabit()
     }
 render(){
+        const {habits,checkedHabits} = this.props.habitReducer
+        const habitIDs = checkedHabits.map(e=>e.habit_id)
+        const displayHabits = habits.map((e,i)=>{
+            var submitted;
+            if(habitIDs.includes(e.id)){
+                submitted = <h3>Done!</h3>
+            }else{
+                submitted=<button onClick={()=>this.props.recordHabit(e.id)}>Completed today?</button>
+            }
+          return(  <div key={i}>
+                <h2>{e.habit_name}</h2>
+                <h3>{e.habit_desc}</h3>
+                {submitted}
+            </div>
+          )
+        })
     return(
         <div>
             <h1>Habits</h1>
-            <h3>{this.state.habits}</h3>
+            {displayHabits}
         </div>
     )
 }
 }
 
-export default connect(state=>state,{getHabits})(Habit)
+export default connect(state=>state,{getHabits,recordHabit,checkHabit})(Habit)

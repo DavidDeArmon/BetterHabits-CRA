@@ -12,6 +12,7 @@ render(){
         <div>
             <h1>Dashboard</h1>
             <Link to='/moods'>Moods</Link>
+            <Link to='/habits'>Habits</Link>
             <Mood/>
             <Habit/>
         </div>

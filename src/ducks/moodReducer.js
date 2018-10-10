@@ -9,26 +9,24 @@ const EDIT_MOOD='EDIT_MOOD'
 
 var getToday=()=>{
 var today = new Date();
-today = (today.getMonth()+1) +'/'+ today.getDate()+'/'+ today.getFullYear();
-console.log(today)
+today =today.getFullYear()+'-'+ (today.getMonth()+1) +'-'+ today.getDate();
 return today;
-
 }
 
 //INITIAL STATE
 const initialState = {
     mood: null,
-    activities:[],
+    activities:[0],
     moodToday:false,
     today:getToday(),
     lastMood:null,
-    moodsArr:[],
+    moodsArr:[0],
     edit:false
 }
 
 //REDUCER
 export default function reducer(state=initialState,action){
-    console.log('action: ', action.type,);
+    // console.log('action: ', action.type,);
     switch(action.type){
         case SET_MOOD:
             return{...state,mood:action.payload}

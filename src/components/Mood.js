@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class Mood extends Component{
     handleToggle(activity){
-        const {activities} = this.props;
+        const {activities} = this.props.moodReducer;
         let toggle = activities.findIndex((e)=>e===activity)
         if(toggle===-1){
             this.props.setActivities([...activities,activity])
@@ -14,14 +14,15 @@ class Mood extends Component{
         }
     }
     render(){
+       const{activities,lastMood,mood,today,moodToday,edit} = this.props.moodReducer
        const moodDisplay=()=>{
-            const activities = ['Work','Relax','Friends','Party','Study']
-            if(!this.props.moodToday){
+            const activitiesList = ['Work','Relax','Friends','Party','Study']
+            if(!moodToday){
             return(
                 <div>
                 <h3>What have you been up to?</h3>   
                     <ul className ='activities'>
-                    {activities.map((e,i)=>{
+                    {activitiesList.map((e,i)=>{
                         return( <li key={i}>
                                     <h4>{e}</h4>
                                     <input type='checkbox' name='activity' value={e} onClick={()=>this.handleToggle(e)}/>
@@ -39,22 +40,22 @@ class Mood extends Component{
                     </div>
                 </div>
             )
-            }else if(this.props.moodToday){
+            }else if(moodToday){
                 return(
                     <div>
-                        <h3>{this.props.today} Mood: {this.props.mood}</h3>
-                        <h4>Activities:{this.props.activities}</h4>
+                        <h3>{today} Mood: {mood}</h3>
+                        <h4>Activities:{activities}</h4>
                         <button onClick={()=>this.props.editMode()}>Edit Entry</button>
-                        <button onClick={()=>this.props.resetMood(this.props.lastMood)}>Delete Entry</button>
+                        <button onClick={()=>this.props.resetMood(lastMood)}>Delete Entry</button>
                     </div>
                 )
             }
         }
         const editOrDelete=()=>{
-            if(!this.props.edit){
-              return  <button onClick={()=>this.props.submitDay(this.props.mood,this.props.activities)}>Accept Submission</button>
-            }else if(this.props.edit){
-               return <button onClick={()=>this.props.editMood(this.props.lastMood,this.props.mood,this.props.activities)}>Accept Edit</button>
+            if(!edit){
+              return  <button onClick={()=>this.props.submitDay(mood,activities)}>Accept Submission</button>
+            }else if(edit){
+               return <button onClick={()=>this.props.editMood(lastMood,mood,activities)}>Accept Edit</button>
             }
         }
         return(

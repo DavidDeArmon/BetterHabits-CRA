@@ -3,7 +3,7 @@ module.exports={
     insertMood(req,res){
         let db = req.app.get('db');
         const {user_id,date,mood,activities} = req.body;
-        console.log(activities)
+        console.log(req.body)
         let tempActivities=activities.join(',')
         db.insertMood(user_id,date,mood,tempActivities).then((response)=>{ 
             console.log('server response:', response)           

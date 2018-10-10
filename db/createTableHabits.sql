@@ -1,8 +1,8 @@
 CREATE TABLE Habits(
 id SERIAL PRIMARY KEY,
 user_id INTEGER,
-date VARCHAR(50),
-habit_name VARCHAR(100)
+date DATE,
+habit_id INTEGER REFERENCES user_habits(id)
 );
 
 CREATE TABLE user_habits(
