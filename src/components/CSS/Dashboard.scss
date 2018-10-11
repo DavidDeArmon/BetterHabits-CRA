@@ -1,0 +1,75 @@
+%displayFlex{
+    display:flex;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
+}
+%header{
+    justify-content: space-evenly;
+    background:#A3255E;
+    height:2.7em;
+    width:100%;
+    font-size: 2.8vh;
+    box-shadow: 0 3px 6px -6px black;
+    color:white;
+}
+%cardHeader{
+    margin:0px;
+    display: flex;
+    align-self: baseline;
+    align-items: center;
+}
+%background{
+    background:#88A4C5;
+    margin:0px;
+    padding-top: 5em;
+    height:100%;
+}
+%card{
+    align-items: flex-start;
+    background:white;
+    height: 100%;
+    width: 300px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+    margin:0 5% 5% 5%;
+}
+.dashboard{
+    @extend %displayFlex;
+    @extend %background;
+    align-items: baseline;
+   
+}
+.dashboardHeader{
+    @extend %displayFlex;
+    @extend %header;
+    box-shadow: 0 3px 20px -6px black;
+    position: fixed;
+    top:0px;
+    .Link{
+        @extend %displayFlex;
+        color:inherit;
+        text-decoration: none;
+        width:6em;
+        height: 60%;
+        border-right:1px solid black;
+        border-left:1px solid black;
+    }
+}
+.Card{
+    @extend %displayFlex;
+    @extend %card;
+    .Header{
+        @extend %header;
+        @extend %cardHeader;
+    }
+    .activities{
+        @extend %displayFlex;
+        flex-wrap: wrap;
+    }
+    .moodButtons{
+        margin:.5em;
+    }
+    .moodInput{
+        margin:.5em;
+    }
+}

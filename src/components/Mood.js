@@ -24,19 +24,19 @@ class Mood extends Component{
                     <ul className ='activities'>
                     {activitiesList.map((e,i)=>{
                         return( <li key={i}>
-                                    <h4>{e}</h4>
-                                    <input type='checkbox' name='activity' value={e} onClick={()=>this.handleToggle(e)}/>
+                                    <h4 className='moodInput'>{e}</h4>
+                                    <input className='moodInput' type='checkbox' name='activity' value={e} onClick={()=>this.handleToggle(e)}/>
                                 </li>
                         )
                         })}                 
                     </ul>
                     <h3>How's your day been?</h3>               
                     <div>
-                            <button onClick = {()=>this.props.setMood('Great')}>Great</button>
-                            <button onClick = {()=>this.props.setMood('Good')}>Good</button>
-                            <button onClick = {()=>this.props.setMood('Meh')}>Meh</button>
-                            <button onClick = {()=>this.props.setMood('Bleh')}>Bleh</button>
-                            <button onClick = {()=>this.props.setMood('Bad')}>Bad</button>
+                            <button className='moodButtons' onClick = {()=>this.props.setMood('Great')}>Great</button>
+                            <button className='moodButtons' onClick = {()=>this.props.setMood('Good')}>Good</button>
+                            <button className='moodButtons' onClick = {()=>this.props.setMood('Meh')}>Meh</button>
+                            <button className='moodButtons' onClick = {()=>this.props.setMood('Bleh')}>Bleh</button>
+                            <button className='moodButtons' onClick = {()=>this.props.setMood('Bad')}>Bad</button>
                     </div>
                 </div>
             )
@@ -45,22 +45,22 @@ class Mood extends Component{
                     <div>
                         <h3>{today} Mood: {mood}</h3>
                         <h4>Activities:{activities}</h4>
-                        <button onClick={()=>this.props.editMode()}>Edit Entry</button>
-                        <button onClick={()=>this.props.resetMood(lastMood)}>Delete Entry</button>
+                        <button className='moodButtons' onClick={()=>this.props.editMode()}>Edit Entry</button>
+                        <button className='moodButtons' onClick={()=>this.props.resetMood(lastMood)}>Delete Entry</button>
                     </div>
                 )
             }
         }
         const editOrDelete=()=>{
             if(!edit){
-              return  <button onClick={()=>this.props.submitDay(mood,activities)}>Accept Submission</button>
+              return  <button className='moodButtons' onClick={()=>this.props.submitDay(mood,activities)}>Accept Submission</button>
             }else if(edit){
-               return <button onClick={()=>this.props.editMood(lastMood,mood,activities)}>Accept Edit</button>
+               return <button className='moodButtons' onClick={()=>this.props.editMood(lastMood,mood,activities)}>Accept Edit</button>
             }
         }
         return(
-            <div className = 'moodCard'>
-                <h1 className = 'moodTitle'>Daily Mood</h1>
+            <div className = 'Card'>
+                <h1 className = 'Header'>Daily Mood</h1>
                 {moodDisplay()}
                 {editOrDelete()}  
             </div>

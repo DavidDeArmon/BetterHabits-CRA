@@ -2,12 +2,16 @@ import React,{Component} from 'react'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {habitDays,getHabits} from '../ducks/habitReducer'
+import './CSS/HabitDash.scss'
 
 
 class Habits extends Component{
     componentDidMount(){
         this.props.habitDays('2018-09-10','2018-10-10')
         this.props.getHabits()
+    }
+    applyColor(){
+
     }
     days(startDay,endDay,habitDays,habitID){
         var start = new Date(startDay)
@@ -29,10 +33,10 @@ class Habits extends Component{
             loop.setHours(0,0,0,0)
             let dateIndex = habitDates.findIndex(e=>findHabitIndex(e))
             if(dateIndex===-1){
-                newArr.push(<div key = {index++}>{`NO DATA ${loop}`}</div>)
+                newArr.push(<div className='box' id='noData'  key = {index++}>{}</div>)
             }else{
-                let date = new Date(habitDays[dateIndex].date)
-                newArr.push(<div key = {index++}>{` DATA FOUND ${date}`}</div>)
+                // let date = new Date(habitDays[dateIndex].date)
+                newArr.push(<div className='box' id='dataFound' key = {index++}>{}</div>)
             }
         }
         return newArr
@@ -43,18 +47,25 @@ class Habits extends Component{
         var habitDisplay=[];    
         //establish array of subscribed habits and include the result of days function
        habits.forEach((habit,idx)=>{
-              habitDisplay.push(<div key = {idx}>
+              habitDisplay.push(<div className='habitCard' key = {idx}>
               <h2>{habit.habit_name}</h2>
-              {this.days('2018-09-10','2018-10-10',habitDays.data,habit.id)}
+              {this.days('2018-09-12','2018-10-11',habitDays.data,habit.id)}
               </div>)
             })
            
                 
         return(
+            
             <div className = 'habitDash'>
-            <h1>Habits</h1>
-            <Link to ='/'>Back</Link>
-            {habitDisplay}
+                <div className='dashboardHeader'>
+                    <Link className="Link" to='/'>Dashboard</Link>
+                    <Link className="Link" to='/moods'>Moods</Link>
+                    <Link className="Link" to='/habits'>Habits</Link>
+                </div>
+                <div className='habitDashCard'>
+                    <h1>Habits</h1>
+                    {habitDisplay}
+                </div>
             </div>
         )
     }

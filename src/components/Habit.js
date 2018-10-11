@@ -25,8 +25,8 @@ render(){
           )
         })
     return(
-        <div>
-            <h1>Habits</h1>
+        <div className="Card">
+            <h1 className="Header">Habits</h1>
             {displayHabits}
         </div>
     )

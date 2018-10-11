@@ -1,0 +1,37 @@
+@import 'Dashboard';
+
+.habitDash{
+    @extend %displayFlex;
+    @extend %background;
+
+    .habitDashCard{
+        @extend %displayFlex;
+        @extend %card;
+        width:40em;
+        .habitCard{
+            @extend %displayFlex;
+            @extend %card;
+            width:15em;
+            margin-top: .2em;
+            h2{
+            @extend %header;
+            @extend %cardHeader;
+            align-self: flex-start;
+            }
+        }
+        .box{
+            height:2em;
+            width:2em;
+            border-radius: .2em;
+            margin:.5em;
+           
+        }
+        #dataFound{background: lightgreen;}
+        #noData{background:lightcoral;}
+    }
+    h1{
+        @extend %header;
+        @extend %cardHeader;
+        align-self: flex-start;
+    }
+}

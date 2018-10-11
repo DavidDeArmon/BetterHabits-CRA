@@ -1,0 +1,35 @@
+@import 'Dashboard';
+
+.moodDash{
+    @extend %displayFlex;
+    @extend %background;
+    .moodDashCard{
+        @extend %displayFlex;
+        @extend %card;
+        width:20em;
+        // padding:1em;
+    }
+    h1{
+        @extend %header;
+        @extend %cardHeader;
+        align-self: flex-start;
+    }
+    .box{
+        height:2em;
+        width:2em;
+        border-radius: .2em;
+        margin:.5em;
+    }
+    #Great{background:green;
+    color:green;}  
+    #Good{background:lightgreen;
+    color:lightgreen;} 
+    #Meh{background:rgb(236, 238, 143);
+    color:darkgrey;}
+    #Bleh{background: plum;
+    color:plum;}
+    #Bad{background:purple;
+    color:purple;}
+    #noData{background:rgb(207, 207, 207);
+    color:red;}
+}

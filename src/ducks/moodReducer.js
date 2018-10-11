@@ -45,7 +45,7 @@ export default function reducer(state=initialState,action){
         case GET_MOODS+'_FULFILLED':
             return{...state,moodsArr:action.payload.data}
         case GET_MOODS+'_PENDING':
-            return{...state}
+            return state
         default:
         return state;
     }
@@ -67,7 +67,7 @@ export function setActivities(activities){
 export function submitDay(mood,activities){    
     return{
         type:SUBMIT_DAY,
-        payload:axios.post('/api/moods',{user_id:1,date:initialState.today,mood,activities})
+        payload:axios.post('/api/moods',{user_id:1,date:initialState.today,mood,activities}).catch(err=>console.log(err))
     }
 }
 export function resetMood(lastMood){
@@ -81,9 +81,9 @@ export function editMood(lastMood,mood,activities){
     console.log('lastmood:',lastMood,'mood:',mood,'activities:',activities)
     return{
         type:EDIT_MOOD,    
-        payload:axios.put('/api/moods/'+lastMood,{user_id:1,date:initialState.today,mood,activities})
+        payload:axios.put('/api/moods/'+lastMood,{user_id:1,date:initialState.today,mood,activities}).catch(err=>console.log(err))
     }
 }
 export function getMoods(){
-    return{type:GET_MOODS, payload:axios.get('/api/moods')}
+    return{type:GET_MOODS, payload:axios.get('/api/moods').catch(err=>console.log(err))}
 }
