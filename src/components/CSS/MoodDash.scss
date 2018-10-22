@@ -3,10 +3,13 @@
 .moodDash{
     @extend %displayFlex;
     @extend %background;
+    height:100vh;
+    align-items: flex-start;
     .moodDashCard{
         @extend %displayFlex;
         @extend %card;
         width:20em;
+        height:20em;
         // padding:1em;
     }
     h1{

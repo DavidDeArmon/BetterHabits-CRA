@@ -2,11 +2,13 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom';
 import Mood from './Mood';
 import Habit from './Habit';
-import './CSS/Dashboard.scss'
+import '../CSS/Dashboard.scss';
+// import firebase from 'firebase';
+import {setUserID,getHabits,checkHabit} from '../../ducks/habitReducer'
+import { connect } from 'react-redux';
 
 
-export default class Dashboard extends Component{
-
+class Dashboard extends Component{
 render(){
     return(
         <div className="dashboard">
@@ -16,9 +18,10 @@ render(){
                 <Link className="Link" to='/habits'>Habits</Link>
             </div>
             <Mood className="moodCard"/>
-            <Habit className="moodCard"/>
+            <Habit className="moodCard" auth = {this.props.firebase.auth}/>
         </div>
     );
 }
 
 }
+export default connect(state=>state,{setUserID,getHabits,checkHabit})(Dashboard)

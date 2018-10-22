@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {setMood,resetMood,setActivities,submitDay,editMood,editMode} from '../ducks/moodReducer'
+import {setMood,resetMood,setActivities,submitDay,editMood,editMode} from '../../ducks/moodReducer'
 import { connect } from 'react-redux';
 
 

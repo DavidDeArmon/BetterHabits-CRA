@@ -1,14 +1,18 @@
 module.exports={
     getHabits(req,res){
         let db=req.app.get('db');
-        db.getHabits().then((response)=>{
+        const {id} = req.params;
+        db.getHabits(id).then((response)=>{
+            console.log(response)
             res.status(200).send(response)
         }).catch(err=>console.log(err))
     },
     getHabitDays(req,res){
         let db=req.app.get('db');
         const{startDate,endDate} = req.body;
-        db.getHabitDays([startDate,endDate]).then(response=>{
+        const {id} = req.params;
+        db.getHabitDays([id,startDate,endDate]).then(response=>{
+            console.log(response)
             res.status(200).send(response)
         }).catch(err=>console.log(err))
     },
@@ -23,6 +27,21 @@ module.exports={
         let db=req.app.get('db');
         const {user_id,date} = req.body;
         db.checkHabit([user_id,date]).then((response)=>{
+            res.status(200).send(response)
+        }).catch(err=>console.log(err))
+    },
+    createHabit(req,res){
+        let db=req.app.get('db');
+        const {user_id,habit_name,habit_desc} = req.body;
+        db.createHabit([user_id,habit_name,habit_desc]).then((response)=>{
+            res.status(200).send(response)
+        }).catch(err=>console.log(err))
+    },
+    updateHabit(req,res){
+        let db=req.app.get('db');
+        const {habit_name,habit_desc} = req.body;
+        const {id} = req.params;
+        db.updateHabit([id,habit_name,habit_desc]).then((response)=>{
             res.status(200).send(response)
         }).catch(err=>console.log(err))
     }

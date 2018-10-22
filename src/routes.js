@@ -1,13 +1,15 @@
-import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import Dashboard from './components/Dashboard'
-import MoodDash from './components/MoodDash';
-import HabitDash from './components/HabitDash';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard";
+import MoodDash from "./components/Mood/MoodDash";
+import HabitDash from "./components/Habit/HabitDash";
+import Login from "./components/Auth/Login";
 
-export default(
-    <Switch>
-        <Route exact path = '/' component = {Dashboard}/>
-        <Route path= '/moods' component={MoodDash}/>
-        <Route path= '/habits' component={HabitDash}/>
-    </Switch>
-)
+export default (
+  <Switch>
+    <Route exact path="/" component={Dashboard} />
+    <Route path="/moods" component={MoodDash} />
+    <Route path="/habits" component={HabitDash} />
+    <Route path="/login" component={Login} />
+  </Switch>
+);

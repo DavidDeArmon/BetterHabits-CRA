@@ -3,15 +3,15 @@
 .habitDash{
     @extend %displayFlex;
     @extend %background;
-
+    flex-wrap: wrap;
     .habitDashCard{
         @extend %displayFlex;
         @extend %card;
-        width:40em;
+        width:43em;
         .habitCard{
             @extend %displayFlex;
             @extend %card;
-            width:15em;
+            width:17em;
             margin-top: .2em;
             h2{
             @extend %header;
@@ -23,8 +23,7 @@
             height:2em;
             width:2em;
             border-radius: .2em;
-            margin:.5em;
-           
+            margin:.5em;           
         }
         #dataFound{background: lightgreen;}
         #noData{background:lightcoral;}
@@ -33,5 +32,16 @@
         @extend %header;
         @extend %cardHeader;
         align-self: flex-start;
+    }
+    input{
+        width:80%;
+        margin:1em;
+    }
+    button{
+        height:2em;
+        width:40%;
+        margin:1em
+    }
+    #newHabit{
     }
 }

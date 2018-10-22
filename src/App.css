@@ -48,7 +48,7 @@ button{
 }
 .App {
   text-align: center;
-  font-family: 'MontSerrat';
+  font-family: 'MontSerrat', 'Sans-Serif';
 }
 .activities{
   display:flex;

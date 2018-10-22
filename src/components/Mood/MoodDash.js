@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
-import {getMoods} from '../ducks/moodReducer'
+import {getMoods} from '../../ducks/moodReducer'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
-import './CSS/MoodDash.scss'
+import '../CSS/MoodDash.scss'
 
 
 class Moods extends Component{
@@ -44,7 +44,6 @@ class Moods extends Component{
         return newArr
     }
     render(){
-        console.log(this.props.moodReducer.moodsArr)
         return(
             <div className = 'moodDash'>
                 <div className='dashboardHeader'>

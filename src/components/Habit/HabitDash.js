@@ -1,17 +1,31 @@
 import React,{Component} from 'react'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import {habitDays,getHabits} from '../ducks/habitReducer'
-import './CSS/HabitDash.scss'
+import {habitDays,getHabits} from '../../ducks/habitReducer'
+import '../CSS/HabitDash.scss'
+import NewHabit from './NewHabit';
+import EditHabits from './EditHabits';
 
 
 class Habits extends Component{
-    componentDidMount(){
-        this.props.habitDays('2018-09-10','2018-10-10')
-        this.props.getHabits()
-    }
-    applyColor(){
-
+    // componentDidMount(){
+    //     const {auth} = this.props.firebase
+    //     console.log('didMount',auth.uid,this.props.habitReducer.user_id)
+    //     if(auth.uid){
+    //         this.props.habitDays('2018-09-11','2018-10-11',auth.uid)
+    //         this.props.getHabits(auth.uid)
+    //     }
+    // 
+    // }
+    componentDidUpdate(prevProps){
+        const {auth} = this.props.firebase
+        console.log('didUpdate',auth.uid,this.props.habitReducer.user_id)
+        if(auth!==prevProps.firebase.auth){
+            if(auth.uid){
+                this.props.habitDays('2018-09-11','2018-10-11',auth.uid)
+                this.props.getHabits(auth.uid)
+            }
+        }
     }
     days(startDay,endDay,habitDays,habitID){
         var start = new Date(startDay)
@@ -66,6 +80,8 @@ class Habits extends Component{
                     <h1>Habits</h1>
                     {habitDisplay}
                 </div>
+                <NewHabit/>
+                <EditHabits/>
             </div>
         )
     }
