@@ -3,16 +3,6 @@ import {getHabits,recordHabit,checkHabit} from '../../ducks/habitReducer'
 import {connect} from 'react-redux'
 
 class Habit extends Component{
-    componentDidUpdate(prevProps){
-        const {auth} = this.props.firebase
-        if(auth!==prevProps.firebase.auth){
-            if(auth.uid){
-                console.log('didUpdate: ',auth.uid)
-                this.props.getHabits(auth.uid)
-                this.props.checkHabit(auth.uid)
-            }
-        }
-    }
 render(){
         const {habits,checkedHabits} = this.props.habitReducer
         const habitIDs = checkedHabits.map(e=>e.habit_id)

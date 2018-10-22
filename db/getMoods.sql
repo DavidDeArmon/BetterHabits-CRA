@@ -1,1 +1,1 @@
-SELECT * FROM Moods
+SELECT * FROM moods WHERE user_id = $1

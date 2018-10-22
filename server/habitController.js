@@ -3,7 +3,6 @@ module.exports={
         let db=req.app.get('db');
         const {id} = req.params;
         db.getHabits(id).then((response)=>{
-            console.log(response)
             res.status(200).send(response)
         }).catch(err=>console.log(err))
     },
@@ -12,7 +11,6 @@ module.exports={
         const{startDate,endDate} = req.body;
         const {id} = req.params;
         db.getHabitDays([id,startDate,endDate]).then(response=>{
-            console.log(response)
             res.status(200).send(response)
         }).catch(err=>console.log(err))
     },

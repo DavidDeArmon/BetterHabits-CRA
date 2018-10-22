@@ -66,7 +66,7 @@ export function getHabits(uid){
         payload:axios.get(`/api/habits/${uid}`).catch(err=>console.log(err))
     }
 }
-export function habitDays(startDate,endDate,uid){
+export function habitDays(uid,startDate,endDate){
     return{
         type:GET_HABIT_DAYS,
         payload:axios.post(`/api/habits/days/${uid}`,{startDate,endDate}).catch(err=>console.log(err))
@@ -84,22 +84,22 @@ export function checkHabit(uid){
         payload:axios.post('/api/habits/check',{user_id:uid,date:initialState.today}).catch(err=>console.log(err))
     }
 }
-export function createHabit(habit_name,habit_desc){
+export function createHabit(uid,habit_name,habit_desc){
     return{
         type:CREATE_HABIT,
-        payload:axios.post('/api/habits/newHabit',{user_id:initialState.user_id,habit_name,habit_desc}).catch(err=>console.log(err))
+        payload:axios.post('/api/habits/newHabit',{user_id:uid,habit_name,habit_desc}).catch(err=>console.log(err))
     }
 }
-export function updateHabit(habit_name,habit_desc){
+export function updateHabit(uid,habit_name,habit_desc){
     return{
         type:UPDATE_HABIT,
-        payload:axios.put('/api/habits/'+initialState.user_id,{habit_name,habit_desc})
+        payload:axios.put('/api/habits/'+uid,{habit_name,habit_desc})
     }
 }
-export function setUserID(user_id){
-    console.log(user_id)
+export function setUserID(uid){
+    console.log(uid)
     return{
     type:SET_USER_ID,
-    payload:user_id
+    payload:uid
     }
 }

@@ -8,21 +8,21 @@ import EditHabits from './EditHabits';
 
 
 class Habits extends Component{
-    // componentDidMount(){
-    //     const {auth} = this.props.firebase
-    //     console.log('didMount',auth.uid,this.props.habitReducer.user_id)
-    //     if(auth.uid){
-    //         this.props.habitDays('2018-09-11','2018-10-11',auth.uid)
-    //         this.props.getHabits(auth.uid)
-    //     }
-    // 
-    // }
+    componentDidMount(){
+        const {auth} = this.props.firebase
+        console.log('didMount',auth.uid,this.props.habitReducer.user_id)
+        if(auth.uid){
+            this.props.habitDays(auth.uid,'2018-09-11','2018-10-11')
+            this.props.getHabits(auth.uid)
+        }
+    
+    }
     componentDidUpdate(prevProps){
         const {auth} = this.props.firebase
         console.log('didUpdate',auth.uid,this.props.habitReducer.user_id)
         if(auth!==prevProps.firebase.auth){
             if(auth.uid){
-                this.props.habitDays('2018-09-11','2018-10-11',auth.uid)
+                this.props.habitDays(auth.uid,'2018-09-11','2018-10-11')
                 this.props.getHabits(auth.uid)
             }
         }

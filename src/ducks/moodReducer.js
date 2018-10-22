@@ -86,6 +86,6 @@ export function editMood(lastMood,mood,activities){
         payload:axios.put('/api/moods/'+lastMood,{user_id:auth.user_id,date:initialState.today,mood,activities}).catch(err=>console.log(err))
     }
 }
-export function getMoods(){
-    return{type:GET_MOODS, payload:axios.get('/api/moods/id='+auth.user_id).catch(err=>console.log(err))}
+export function getMoods(uid){
+    return{type:GET_MOODS, payload:axios.get('/api/moods/'+uid).catch(err=>console.log(err))}
 }

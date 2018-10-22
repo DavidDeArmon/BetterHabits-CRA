@@ -7,7 +7,20 @@ import '../CSS/MoodDash.scss'
 
 class Moods extends Component{
     componentDidMount(){
-        this.props.getMoods()
+        const {auth} = this.props.firebase
+        console.log('didMount',auth.uid,this.props.habitReducer.user_id)
+        if(auth.uid){
+            this.props.getMoods(auth.uid)
+        }    
+    }
+    componentDidUpdate(prevProps){
+         const {auth} = this.props.firebase
+        console.log('didUpdate',auth.uid,this.props.habitReducer.user_id)
+        if(auth!==prevProps.firebase.auth){
+            if(auth.uid){
+                this.props.getMoods(auth.uid)
+            }
+        }
     }
     applyColor(mood,key){
         var style='noData';

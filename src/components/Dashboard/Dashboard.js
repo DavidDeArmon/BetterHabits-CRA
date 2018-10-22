@@ -9,6 +9,25 @@ import { connect } from 'react-redux';
 
 
 class Dashboard extends Component{
+componentDidMount(){
+    const {auth} = this.props.firebase
+    console.log('didMount',auth.uid,this.props.habitReducer.user_id)
+    if(auth.uid){
+        this.props.getHabits(auth.uid)
+        this.props.checkHabit(auth.uid)
+    }
+
+}
+componentDidUpdate(prevProps){
+    const {auth} = this.props.firebase
+    if(auth!==prevProps.firebase.auth){
+        if(auth.uid){
+            console.log('didUpdate: ',auth.uid)
+            this.props.getHabits(auth.uid)
+            this.props.checkHabit(auth.uid)
+        }
+    }
+}
 render(){
     return(
         <div className="dashboard">

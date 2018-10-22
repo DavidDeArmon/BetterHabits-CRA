@@ -21,17 +21,6 @@ const express = require("express"),
   } = require("./habitController"),
   { json } = require("body-parser");
 
-// const firebase = require('firebase')
-// const config = {
-//     apiKey: "AIzaSyCpP5kS7cQa68MpKONbBOevQv-3MDb04L4",
-//     authDomain: "assistedinawe.firebaseapp.com",
-//     databaseURL: "https://assistedinawe.firebaseio.com",
-//     projectId: "assistedinawe",
-//     storageBucket: "assistedinawe.appspot.com",
-//     messagingSenderId: "418417628831"
-//   };
-//   firebase.initializeApp(config);
-
 app.use(json());
 massive(process.env.CONNECTION_STRING).then(dbInstance => {
   app.set("db", dbInstance);
@@ -40,7 +29,7 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {
 //endpoints
 app.post("/api/moods", insertMood);
 app.delete("/api/moods/:id", deleteTodaysMood);
-app.get("/api/moods", getMoods);
+app.get("/api/moods/:id", getMoods);
 app.put("/api/moods/:id", editMood);
 
 app.get("/api/habits/:id", getHabits);
