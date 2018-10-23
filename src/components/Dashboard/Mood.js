@@ -14,8 +14,9 @@ class Mood extends Component{
         }
     }
     render(){
-       const{activities,lastMood,mood,today,moodToday,edit} = this.props.moodReducer
-       const moodDisplay=()=>{
+        const{activities,lastMood,mood,today,moodToday,edit} = this.props.moodReducer
+        const {uid} = this.props.firebase.auth
+        const moodDisplay=()=>{
             const activitiesList = ['Work','Relax','Friends','Party','Study']
             if(!moodToday){
             return(
@@ -53,7 +54,7 @@ class Mood extends Component{
         }
         const editOrDelete=()=>{
             if(!edit){
-              return  <button className='moodButtons' onClick={()=>this.props.submitDay(mood,activities)}>Accept Submission</button>
+              return  <button className='moodButtons' onClick={()=>this.props.submitDay(uid,mood,activities)}>Accept Submission</button>
             }else if(edit){
                return <button className='moodButtons' onClick={()=>this.props.editMood(lastMood,mood,activities)}>Accept Edit</button>
             }

@@ -19,9 +19,11 @@ module.exports={
     getMoods(req,res){
         let db=req.app.get('db');
         const {id} = req.params
-        db.getMoods(id).then((response)=>{
-            res.status(200).send(response)
-        }).catch(err=>console.log(err))
+        if(db){
+            db.getMoods(id).then((response)=>{
+                res.status(200).send(response)
+            }).catch(err=>console.log(err))
+        }
     },
     editMood(req,res){
         let db=req.app.get('db');

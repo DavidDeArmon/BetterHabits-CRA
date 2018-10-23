@@ -1,16 +1,18 @@
 @import 'Dashboard';
-
 .moodDash{
     @extend %displayFlex;
     @extend %background;
-    height:100vh;
     align-items: flex-start;
     .moodDashCard{
         @extend %displayFlex;
         @extend %card;
-        width:20em;
-        height:20em;
-        // padding:1em;
+        width:25em;
+       
+    }
+    .DateChange{
+        @extend %displayFlex;
+        width:100%;
+        align-self: flex-start;
     }
     h1{
         @extend %header;
@@ -18,21 +20,23 @@
         align-self: flex-start;
     }
     .box{
-        height:2em;
-        width:2em;
+        @extend %displayFlex;
+        height:2.1em;
+        width:2.1em;
         border-radius: .2em;
         margin:.5em;
     }
-    #Great{background:green;
-    color:green;}  
-    #Good{background:lightgreen;
-    color:lightgreen;} 
-    #Meh{background:rgb(236, 238, 143);
-    color:darkgrey;}
-    #Bleh{background: plum;
-    color:plum;}
-    #Bad{background:purple;
-    color:purple;}
-    #noData{background:rgb(207, 207, 207);
-    color:red;}
+    .detailed{
+        width:90%;
+    }
+    .boxContainer{
+        @extend %displayFlex;
+        width:100%;
+    }
+    #Great{background:green;}  
+    #Good{background:lightgreen;} 
+    #Meh{background:rgb(236, 238, 143);}
+    #Bleh{background: plum;}
+    #Bad{background:purple;}
+    #noData{background:rgb(207, 207, 207);}
 }

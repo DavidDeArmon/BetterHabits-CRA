@@ -8,6 +8,9 @@
         @extend %displayFlex;
         @extend %card;
         width:43em;
+        .habitDisplay{
+            @extend %displayFlex;
+        }
         .habitCard{
             @extend %displayFlex;
             @extend %card;
@@ -28,6 +31,24 @@
         #dataFound{background: lightgreen;}
         #noData{background:lightcoral;}
     }
+    .DateChange{
+        @extend %displayFlex;
+        width:100%;
+        flex-direction: row;
+        align-self: flex-start;
+        input{
+            width:30%;
+            margin:.5em;
+        }
+        button{
+            width:30%;
+            margin:.5em;
+        }
+        #details{
+            width:1em;
+        }
+    }
+   
     h1{
         @extend %header;
         @extend %cardHeader;
@@ -41,7 +62,5 @@
         height:2em;
         width:40%;
         margin:1em
-    }
-    #newHabit{
     }
 }
