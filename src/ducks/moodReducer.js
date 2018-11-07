@@ -21,13 +21,13 @@ var startDate=(date)=>{
 //INITIAL STATE
 const initialState = {
     mood: null,
-    activities:[0],
+    activities:[],
     moodToday:false,
     today:getToday(),
     lastMood:null,
     moodsArr:[0],
     edit:false,
-    startDate:startDate(new Date()),
+    startDate:startDate(new Date(getToday())),
     endDate:getToday()
 }
 

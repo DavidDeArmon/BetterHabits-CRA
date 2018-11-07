@@ -1,3 +1,4 @@
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
 %displayFlex{
     display:flex;
     flex-wrap:wrap;
@@ -29,9 +30,26 @@
     align-items: flex-start;
     background:white;
     height: 100%;
-    width: 300px;
+    width:24em;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
     margin:0 5% 5% 5%;
+}
+%button{
+    background-color:#B97EA3;
+    box-shadow: 3px 3px 10px -6px black;
+    height: 2em;
+    border-radius:.25em;
+    margin:.5em;
+    padding:.25em;
+}
+%container{
+    @extend %displayFlex;
+    flex-direction: column;
+    width:38em;
+    height:100%;
+    // margin: 0 5% 0 5%;
+    // padding: 0 5% 0 5%;
+
 }
 html{
     background-color: #88A4C5;
@@ -40,7 +58,6 @@ html{
     @extend %displayFlex;
     @extend %background;
     align-items: baseline;
-   
 }
 .dashboardHeader{
     @extend %displayFlex;
@@ -48,14 +65,23 @@ html{
     box-shadow: 0 3px 20px -6px black;
     position: fixed;
     top:0px;
+    z-index: 10;
+    align-items: center;
     .Link{
         @extend %displayFlex;
         color:inherit;
         text-decoration: none;
-        width:6em;
+        width:5.7em;
         height: 60%;
         border-right:1px solid black;
         border-left:1px solid black;
+    }
+}
+.container{
+    @extend %container;
+    .Card{
+        width:90%;
+        margin:0 0 1em 0 ;
     }
 }
 .Card{
@@ -68,11 +94,57 @@ html{
     .activities{
         @extend %displayFlex;
         flex-wrap: wrap;
+        li{
+            margin:.5em;
+        }
+        input{
+            height:1em;
+            width:1em;
+            border: black solid;
+        }
+    }
+    #cardTitle{
+        opacity: .87;
+    }
+    button{
+        @extend %button;
+    }
+    #submitButton{
+        background-color: #B3C2D2;
+        color: black;
+        opacity:1;
+        width:10em;
     }
     .moodButtons{
-        margin:.5em;
-    }
+        width:3.5em;
+    }       
     .moodInput{
-        margin:.5em;
+        opacity: .80;
+        margin:.5rem;
     }
+    .habitCard{
+        h3{
+        opacity: .76;
+        }
+        button{
+        background-color: #B3C2D2;
+        }
+    }
+    .userCard{
+        @extend %displayFlex;
+        flex-direction: column;
+        .Link{
+            @extend %displayFlex;
+            @extend %button;
+            color:inherit;
+            text-decoration: none;
+            width:5.7em;
+            height: 60%;
+        }
+    }
+}
+
+#icon{
+    @extend %displayFlex;
+    height:90%;
 }

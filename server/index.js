@@ -1,7 +1,5 @@
 require("dotenv").config();
 const express = require("express"),
-  session = require("express-session"),
-  passport = require("passport"),
   app = express(),
   port = process.env.PORT || 3001,
   massive = require("massive"),

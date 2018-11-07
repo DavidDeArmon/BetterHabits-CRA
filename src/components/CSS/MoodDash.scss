@@ -1,4 +1,6 @@
 @import 'Dashboard';
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+
 .moodDash{
     @extend %displayFlex;
     @extend %background;
@@ -21,8 +23,8 @@
     }
     .box{
         @extend %displayFlex;
-        height:2.1em;
-        width:2.1em;
+        height:2.5em;
+        width:2.5em;
         border-radius: .2em;
         margin:.5em;
     }
@@ -31,7 +33,7 @@
     }
     .boxContainer{
         @extend %displayFlex;
-        width:100%;
+        width:90%;
     }
     #Great{background:green;}  
     #Good{background:lightgreen;} 
@@ -39,4 +41,23 @@
     #Bleh{background: plum;}
     #Bad{background:purple;}
     #noData{background:rgb(207, 207, 207);}
+    .DateChange{
+        @extend %displayFlex;
+        width:100%;
+        flex-direction: row;
+        align-self: flex-start;
+        input{
+            width:30%;
+            margin:.5em;
+        }
+        button{
+        @extend %button;
+        background-color: #B3C2D2;
+        width:30%;
+        margin:.5em
+        }
+        #details{
+            width:1em;
+        }
+    }
 }

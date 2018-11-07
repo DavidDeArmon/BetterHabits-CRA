@@ -2,9 +2,10 @@ import React,{Component} from 'react'
 import {getMoods} from '../../ducks/moodReducer'
 import {toggleDetailed} from '../../ducks/habitReducer'
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
 import '../CSS/MoodDash.scss'
+import Header from '../Header/Header'
 import DateChange from '../DateChange/DateChange';
+import Mood from '../Dashboard/Mood'
 
 
 class Moods extends Component{
@@ -38,25 +39,25 @@ class Moods extends Component{
         }
     }
     days(startDay,endDay,moods){
-        var start = new Date(startDay)
-        var end= new Date(endDay)
-        var loop = new Date(start)
+        let start = new Date(startDay)
+        let end= new Date(endDay)
+        let loop = new Date(start)
         let index = 0
         let newArr=[]
-        let findMoodIndex = (element)=>{return element===`${loop}`}
+        function findMoodIndex(element){return element===`${loop}`}
         //creates array of dates from moods
-        let moodDates = moods.map(e=>`${new Date(e.date)}`)
+        let moodDates = moods.map(function(e){return `${new Date(e.date)}`})
            //loops through provided dates and fills in data found or not found
         while(loop<=end){
             var newDate = loop.setDate(loop.getDate()+1)
             loop= new Date(newDate)
             loop.setHours(0,0,0,0)
-            let dateIndex = moodDates.findIndex(e=>findMoodIndex(e))
+            let dateIndex = moodDates.findIndex(function(e){return findMoodIndex(e)})
             if(dateIndex===-1){
                 if(this.props.habitReducer.detailed){
                     newArr.push(<div className='box detailed' id='noData' key = {index++}><span>{loop.toString().slice(0,15)}</span></div>)
                 }else{
-                    newArr.push(<div className='box' id='noData' key = {index++} style={{width:32}}>{}</div>)
+                    newArr.push(<div className='box' id='noData' key = {index++} >{}</div>)
                 }
             }else{
                 newArr.push(this.applyColor(moods[dateIndex],index++,moodDates[dateIndex]))
@@ -68,16 +69,17 @@ class Moods extends Component{
         const{startDate,endDate} = this.props.moodReducer
         return(
             <div className = 'moodDash'>
-                <div className='dashboardHeader'>
-                    <Link className="Link" to='/'>Dashboard</Link>
-                    <Link className="Link" to='/moods'>Moods</Link>
-                    <Link className="Link" to='/habits'>Habits</Link>
-                </div>
+                <Header/>
+                <Mood/>
                 <div className = 'moodDashCard'>
                     <h1>Moods</h1>
                     <DateChange/>
-                    <h4>Detailed view: </h4>
-                    <input id="details" type="checkbox" onChange={this.props.toggleDetailed} checked = {this.props.habitReducer.detailed}/>
+                    <div className='pretty p-default'>
+                        <input id="details" type="checkbox" onChange={this.props.toggleDetailed} checked = {this.props.habitReducer.detailed}/>
+                        <div className='state'>
+                            <label>Detailed view: </label>
+                        </div>
+                    </div>
                     <div className='boxContainer'>
                         {this.days(startDate,endDate,this.props.moodReducer.moodsArr)}
                     </div>

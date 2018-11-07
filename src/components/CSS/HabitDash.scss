@@ -1,20 +1,25 @@
 @import 'Dashboard';
-
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+ 
 .habitDash{
     @extend %displayFlex;
     @extend %background;
     flex-wrap: wrap;
+    align-items: center;
+   
     .habitDashCard{
         @extend %displayFlex;
         @extend %card;
-        width:43em;
+        width:42em;
         .habitDisplay{
             @extend %displayFlex;
         }
         .habitCard{
             @extend %displayFlex;
             @extend %card;
-            width:17em;
+            margin-left:1em;
+            margin-right:1em;
+            width:18em;
             margin-top: .2em;
             h2{
             @extend %header;
@@ -23,10 +28,13 @@
             }
         }
         .box{
-            height:2em;
-            width:2em;
+            @extend %displayFlex;
+            height:2.5em;
+            width:2.5em;
             border-radius: .2em;
-            margin:.5em;           
+            margin:.5em;
+            justify-content: center;
+            vertical-align: auto;
         }
         #dataFound{background: lightgreen;}
         #noData{background:lightcoral;}
@@ -59,8 +67,16 @@
         margin:1em;
     }
     button{
-        height:2em;
+        @extend %button;
+        background-color: #B3C2D2;
         width:40%;
         margin:1em
     }
+}
+.habitcontainer{
+     @extend %container;
+        .habitDashCard{
+            width:90%;
+        margin:0 0 1em 0 ;
+        }
 }

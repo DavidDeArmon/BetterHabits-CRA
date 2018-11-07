@@ -6,6 +6,7 @@ const CHECK_HABIT = "CHECK_HABIT";
 const GET_HABIT_DAYS = "GET_HABIT_DAYS";
 const CREATE_HABIT = "CREATE_HABIT";
 const UPDATE_HABIT = "UPDATE_HABIT";
+const DELETE_HABIT = 'DELETE_HABIT';
 const TOGGLE_DETAILED = 'TOGGLE_DETAILED';
 
 var getToday = () => {
@@ -16,8 +17,8 @@ var getToday = () => {
 };
 //inital state
 const initialState = {
-  habits: [0],
-  checkedHabits: [0],
+  habits: [],
+  checkedHabits: [],
   today: getToday(),
   recordedToday: false,
   habitDays: { data: [0] },
@@ -42,13 +43,18 @@ export default function reducer(state = initialState, action) {
       return state;
     case RECORD_HABIT + "_FULFILLED":
       return { ...state, recordedToday: true,checkedHabits:action.payload.data };
+    case CHECK_HABIT + "_PENDING":
+      return state;
     case CHECK_HABIT + "_FULFILLED":
+      console.log(action.payload.data)
       return { ...state, checkedHabits: action.payload.data };
     case CREATE_HABIT + "_FULFILLED":
       return { ...state, habits: action.payload.data };
     case CREATE_HABIT + "_PENDING":
       return state;
     case UPDATE_HABIT + "_FULFILLED":
+      return { ...state, habits: action.payload.data };
+    case DELETE_HABIT + "_FULFILLED":
       return { ...state, habits: action.payload.data };
     case TOGGLE_DETAILED:
       return{...state,detailed:!state.detailed}
@@ -83,8 +89,7 @@ export function recordHabit(uid, habit_id) {
 export function checkHabit(uid) {
   return {
     type: CHECK_HABIT,
-    payload: axios
-      .post("/api/habits/check", { user_id: uid, date: initialState.today })
+    payload: axios.post("/api/habits/check", { user_id: uid, date: initialState.today })
       .catch(err => console.log(err))
   };
 }
@@ -96,10 +101,16 @@ export function createHabit(uid, habit_name, habit_desc) {
       .catch(err => console.log(err))
   };
 }
-export function updateHabit(uid, habit_name, habit_desc) {
+export function updateHabit(habit_id, habit_name, habit_desc,uid) {
   return {
     type: UPDATE_HABIT,
-    payload: axios.put("/api/habits/" + uid, { habit_name, habit_desc })
+    payload: axios.put("/api/habits/" + habit_id, { habit_name, habit_desc,uid })
+  };
+}
+export function deleteHabit(uid, habit_id) {
+  return {
+    type: DELETE_HABIT,
+    payload: axios.post("/api/habits/" + uid, { habit_id })
   };
 }
 export function toggleDetailed(){

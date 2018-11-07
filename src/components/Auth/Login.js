@@ -12,8 +12,8 @@ import '../CSS/Auth.scss'; // Import globally.
 
 // Instantiate a Firebase app.
 var config = {
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  apiKey: "AIzaSyCpP5kS7cQa68MpKONbBOevQv-3MDb04L4",
+  authDomain: "assistedinawe.firebaseapp.com",
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
@@ -26,7 +26,7 @@ const uiConfig = {
   // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  signInSuccessUrl: '/',
+  signInSuccessUrl: '/dashboard',
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -37,11 +37,17 @@ const uiConfig = {
 class Login extends Component {
   render() {
     return (
-     <div>
-        <h1>My App</h1>
+    <div className='login'>
+      <div className="header">
+        <div className="title">
+          <h1>Better Habits</h1>
+        </div>
+      </div>
+      <div className="card">
         <p>Please sign-in:</p>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
       </div>
+    </div>
     );
   }
 }

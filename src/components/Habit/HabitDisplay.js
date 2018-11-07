@@ -28,7 +28,7 @@ class HabitDisplay extends Component {
       let dateIndex = habitDates.findIndex(e => findHabitIndex(e));
       if (dateIndex === -1) {
           if(this.props.habitReducer.detailed){
-            newArr.push(<div className="box" id="noData" key={index++}>{loop.getMonth()+1}/{loop.getDate()}</div>);
+            newArr.push(<div className="box" id="noData" key={index++}><>{loop.getMonth()+1}/{loop.getDate()}</></div>);
           }else{
             newArr.push(<div className="box" id="noData" key={index++}></div>);
           }

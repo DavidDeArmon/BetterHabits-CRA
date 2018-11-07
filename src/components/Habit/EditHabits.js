@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import { connect } from 'react-redux';
-import {updateHabit} from '../../ducks/habitReducer'
+import {updateHabit,deleteHabit} from '../../ducks/habitReducer'
 import '../CSS/HabitDash.scss'
 
 
@@ -17,13 +17,18 @@ class EditHabit extends Component{
     }
     render(){
         const {habits} = this.props.habitReducer
+        const {uid} = this.props.firebase.auth
         let displayHabits = habits.map((habit,idx)=>{
          return(   <div key={idx}>
                 <h3>{habit.habit_name}</h3>
                 <h4>{habit.habit_desc}</h4>
                 <input placeholder={habit.habit_name} name='name'onChange={this.handleChange} ></input>
                 <input placeholder={habit.habit_desc} name='desc'onChange={this.handleChange} ></input>
-                <button onClick={()=>this.props.updateHabit(habit.id,this.state.name,this.state.desc)}>Submit Change</button>
+                <div>
+                <button onClick={()=>this.props.updateHabit(habit.id,this.state.name,this.state.desc,uid)}>Submit Change</button>
+                <button onClick={()=>this.props.deleteHabit(uid,habit.id)}>Delete Habit</button>
+
+                </div>
             </div>)
         })
         return(            
@@ -35,4 +40,4 @@ class EditHabit extends Component{
     }
 }
 
-export default connect(state=>state,{updateHabit})(EditHabit)
+export default connect(state=>state,{updateHabit,deleteHabit})(EditHabit)
