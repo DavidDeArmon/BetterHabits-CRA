@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 class Mood extends Component{
     handleToggle(activity){
-        const {activities} = this.props
+        const {activities} = this.props;
+        console.log(this.props)
         let toggle = activities.findIndex((e)=>e===activity)
         if(toggle===-1){
             this.props.setActivities([...activities,activity])
@@ -15,6 +16,7 @@ class Mood extends Component{
     }
     render(){
         const{activities,lastMood,mood,today,moodToday,edit} = this.props
+        console.log(activities)
         const {uid} = this.props
         const moodDisplay=()=>{
             const activitiesList = ['Work','Relax','Friends','Family','Party','Study']
@@ -72,7 +74,9 @@ class Mood extends Component{
     }
 }
 const mapStateToProps = props =>{
-    const{activities,lastMood,mood,today,moodToday,edit,uid} = props
+    console.log(props)
+    const{activities,lastMood,mood,today,moodToday,edit} = props.moodReducer;
+    const {uid} = props.firebase.auth;
   return{
   activities,
   lastMood,
